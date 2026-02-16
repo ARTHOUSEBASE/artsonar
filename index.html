@@ -6,97 +6,212 @@
     <title>ARTSONAR - AI NFT Agent</title>
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,-apple-system,sans-serif}
-        body{background:linear-gradient(135deg,#0052FF 0%,#003d91 100%);min-height:100vh;color:#fff}
+        
+        /* Warna dari logo - Dark Navy/Black gradient */
+        body{
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            min-height:100vh;
+            color:#fff
+        }
+        
         .container{max-width:480px;margin:0 auto;padding:20px}
         
         /* Logo Section */
         .logo-section{text-align:center;padding:30px 0}
-        .logo-main{
-            width:80px;
-            height:80px;
-            background:#fff;
+        .logo-img{
+            width:100px;
+            height:100px;
             border-radius:20px;
-            margin:0 auto 15px;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            font-size:40px;
-            box-shadow:0 10px 30px rgba(0,0,0,0.3);
-            animation:pulse 2s infinite
+            object-fit:cover;
+            box-shadow:0 10px 40px rgba(0,212,255,0.3);
+            animation:pulse 2s infinite;
+            border: 3px solid rgba(0,212,255,0.5)
         }
         @keyframes pulse{
-            0%,100%{transform:scale(1)}
-            50%{transform:scale(1.05)}
+            0%,100%{transform:scale(1);box-shadow:0 10px 40px rgba(0,212,255,0.3)}
+            50%{transform:scale(1.05);box-shadow:0 15px 50px rgba(0,212,255,0.5)}
         }
-        .brand-name{font-size:2.5rem;font-weight:800;letter-spacing:-2px;margin-bottom:5px}
-        .brand-tag{font-size:1rem;opacity:0.9}
+        .brand-name{
+            font-size:2.5rem;
+            font-weight:800;
+            letter-spacing:-2px;
+            margin-top:15px;
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text
+        }
+        .brand-tag{font-size:1rem;opacity:0.8;color:#00d4ff}
         
-        /* Base Logo */
+        /* Base Badge dengan warna logo */
         .powered-by{
             display:inline-flex;
             align-items:center;
             gap:8px;
-            background:rgba(255,255,255,0.15);
+            background:rgba(0,212,255,0.15);
+            border: 1px solid rgba(0,212,255,0.3);
             padding:8px 16px;
             border-radius:20px;
             margin-top:15px;
-            font-size:0.85rem
+            font-size:0.85rem;
+            color: #00d4ff
         }
-        .base-logo{
-            width:20px;
-            height:20px;
+        
+        /* Stats dengan accent warna logo */
+        .stats{
+            display:flex;
+            justify-content:space-around;
+            padding:20px 0;
+            margin:20px 0;
+            background:rgba(0,212,255,0.1);
+            border: 1px solid rgba(0,212,255,0.2);
+            border-radius:15px
+        }
+        .stat{text-align:center}
+        .stat-number{
+            font-size:1.8rem;
+            font-weight:800;
+            color: #00d4ff
+        }
+        .stat-label{font-size:0.75rem;opacity:0.8}
+        
+        /* Phone dengan tema gelap */
+        .phone{
+            background:#0f0f1a;
+            border-radius:40px;
+            padding:12px;
+            margin:20px 0;
+            box-shadow:0 20px 60px rgba(0,0,0,0.5);
+            border: 1px solid rgba(0,212,255,0.2)
+        }
+        .screen{
+            background:#1a1a2e;
+            border-radius:28px;
+            height:450px;
+            overflow:hidden;
+            display:flex;
+            flex-direction:column
+        }
+        .chat-header{
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            padding:15px;
+            display:flex;
+            align-items:center;
+            gap:10px
+        }
+        .chat-avatar{
+            width:40px;
+            height:40px;
             background:#fff;
             border-radius:50%;
             display:flex;
             align-items:center;
             justify-content:center;
-            font-size:12px;
-            color:#0052FF;
-            font-weight:bold
+            overflow:hidden;
+            border: 2px solid rgba(255,255,255,0.3)
+        }
+        .chat-avatar img{width:100%;height:100%;object-fit:cover}
+        .chat-area{
+            flex:1;
+            background:#0f0f1a;
+            padding:15px;
+            overflow-y:auto
+        }
+        .msg{
+            max-width:80%;
+            padding:10px 15px;
+            border-radius:18px;
+            margin:8px 0;
+            font-size:14px;
+            line-height:1.4
+        }
+        .msg-bot{
+            background:#1a1a2e;
+            color:#fff;
+            align-self:flex-start;
+            border-bottom-left-radius:4px;
+            border: 1px solid rgba(0,212,255,0.2)
+        }
+        .msg-user{
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            color:#fff;
+            align-self:flex-end;
+            border-bottom-right-radius:4px;
+            margin-left:auto
         }
         
-        /* Stats */
-        .stats{display:flex;justify-content:space-around;padding:20px 0;margin:20px 0;background:rgba(255,255,255,0.1);border-radius:15px}
-        .stat{text-align:center}
-        .stat-number{font-size:1.8rem;font-weight:800}
-        .stat-label{font-size:0.75rem;opacity:0.8}
-        
-        /* Phone */
-        .phone{background:#1a1a1a;border-radius:40px;padding:12px;margin:20px 0;box-shadow:0 20px 60px rgba(0,0,0,0.4)}
-        .screen{background:#fff;border-radius:28px;height:450px;overflow:hidden;display:flex;flex-direction:column}
-        .chat-header{background:#0052FF;padding:15px;display:flex;align-items:center;gap:10px}
-        .chat-avatar{width:40px;height:40px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px}
-        .chat-area{flex:1;background:#f0f2f5;padding:15px;overflow-y:auto}
-        .msg{max-width:80%;padding:10px 15px;border-radius:18px;margin:8px 0;font-size:14px;line-height:1.4}
-        .msg-bot{background:#fff;color:#333;align-self:flex-start;border-bottom-left-radius:4px;box-shadow:0 1px 2px rgba(0,0,0,0.1)}
-        .msg-user{background:#0052FF;color:#fff;align-self:flex-end;border-bottom-right-radius:4px;margin-left:auto}
-        
-        /* Features */
-        .features{background:#fff;border-radius:24px;padding:25px;margin:20px 0;color:#333}
-        .feature{display:flex;align-items:center;gap:15px;padding:15px 0;border-bottom:1px solid #f0f0f0}
+        /* Features dengan tema gelap */
+        .features{
+            background:#0f0f1a;
+            border-radius:24px;
+            padding:25px;
+            margin:20px 0;
+            color:#fff;
+            border: 1px solid rgba(0,212,255,0.2)
+        }
+        .feature{
+            display:flex;
+            align-items:center;
+            gap:15px;
+            padding:15px 0;
+            border-bottom:1px solid rgba(0,212,255,0.1)
+        }
         .feature:last-child{border-bottom:none}
-        .feature-icon{width:50px;height:50px;background:linear-gradient(135deg,#0052FF,#003d91);color:#fff;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px}
-        .feature-text h3{font-size:1rem;margin-bottom:3px}
-        .feature-text p{font-size:0.85rem;color:#666}
+        .feature-icon{
+            width:50px;
+            height:50px;
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            color:#fff;
+            border-radius:12px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:22px;
+            box-shadow:0 5px 15px rgba(0,212,255,0.3)
+        }
+        .feature-text h3{font-size:1rem;margin-bottom:3px;color:#00d4ff}
+        .feature-text p{font-size:0.85rem;color:#aaa}
         
-        /* CTA */
-        .btn{display:block;width:100%;padding:18px;background:#fff;color:#0052FF;text-align:center;border-radius:30px;text-decoration:none;font-weight:700;font-size:1.1rem;margin:20px 0;box-shadow:0 10px 30px rgba(0,0,0,0.2)}
+        /* CTA dengan gradient logo */
+        .btn{
+            display:block;
+            width:100%;
+            padding:18px;
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            color:#0a0a0a;
+            text-align:center;
+            border-radius:30px;
+            text-decoration:none;
+            font-weight:700;
+            font-size:1.1rem;
+            margin:20px 0;
+            box-shadow:0 10px 30px rgba(0,212,255,0.3);
+            transition: transform 0.2s
+        }
+        .btn:active{transform:scale(0.98)}
         
         /* Footer */
-        .footer{text-align:center;padding:20px 0;opacity:0.8;font-size:0.85rem}
+        .footer{
+            text-align:center;
+            padding:20px 0;
+            opacity:0.8;
+            font-size:0.85rem;
+            color:#00d4ff
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <!-- Logo Section -->
         <div class="logo-section">
-            <div class="logo-main">🎨</div>
+            <img src="https://i.ibb.co.com/DP1TdmTY/1000024093.png" 
+                 alt="ARTSONAR Logo" 
+                 class="logo-img">
             <div class="brand-name">ARTSONAR</div>
             <div class="brand-tag">AI NFT Agent</div>
             
             <div class="powered-by">
-                <div class="base-logo">B</div>
-                <span>Powered by Base</span>
+                <span>⚡ Powered by Base</span>
             </div>
         </div>
         
@@ -120,7 +235,9 @@
         <div class="phone">
             <div class="screen">
                 <div class="chat-header">
-                    <div class="chat-avatar">🎨</div>
+                    <div class="chat-avatar">
+                        <img src="https://i.ibb.co.com/DP1TdmTY/1000024093.png" alt="A">
+                    </div>
                     <div>
                         <div style="font-weight:600">ARTSONAR Bot</div>
                         <div style="font-size:12px;opacity:0.9">🟢 online</div>
@@ -162,8 +279,8 @@
             <div class="feature">
                 <div class="feature-icon">🚀</div>
                 <div class="feature-text">
-                    <h3>Launchpad Ready</h3>
-                    <p>Moltlaunch compatible</p>
+                    <h3>Compatible OpenClaw</h3>
+                    <p>OpenClaw launchpad ready</p>
                 </div>
             </div>
         </div>
